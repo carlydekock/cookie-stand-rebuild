@@ -6,13 +6,28 @@ const tableHeader = document.getElementById('sales-table-header');
 const tableBody = document.getElementById('sales-table-body');
 const tableFooter = document.getElementById('sales-table-footer');
 const stores = [];
-const newStoreForm = document.getElementById('store-info-form');
+const newStoreForm = document.getElementById('new-store-info');
 
 //Render element helper function to create, give content and append to the DOM
 function renderElement(elementToCreate, content, parentElement){
   const child = document.createElement(elementToCreate);
   child.textContent = content;
   parentElement.appendChild(child);
+}
+
+function handleSubmit(e){
+  e.preventDefault();
+  const storeName = e.target.name.value;
+  const storeMin = parseInt(e.target.min.value);
+  const storeMax = parseInt(e.target.max.value);
+  const storeAvg = e.target.average.value;
+  const newStore = new Store(storeName, storeMin, storeMax, storeAvg);
+  newStore.render();
+  const oldFooter = tableFooter.childNodes[0];
+  tableFooter.removeChild(oldFooter);
+  renderFooter();
+  // console.log('table footer child to remove?', tableFooter.childNodes[0]);
+  // renderFooter(); //to re-render with new totals
 }
 
 //Store class + constructor
@@ -95,4 +110,4 @@ renderHeader();
 renderAll();
 renderFooter();
 
-newStoreForm.addEventListener('click', handleSubmit);
+newStoreForm.addEventListener('submit', handleSubmit);

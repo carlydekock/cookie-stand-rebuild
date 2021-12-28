@@ -20,7 +20,18 @@
   <main>
     <h1>Salmon Cookie Sales</h1>
     <form id="new-store-info">
-      
+      <fieldset>
+        <legend>Enter info for a new store:</legend>
+        <label for="name">Enter store location name:</label>
+        <input type="text" name="name">
+        <label for="min">Min # Customers</label>
+        <input type="number" min=1 name="min">
+        <label for="max">Max # Customers</label>
+        <input type="number" min=2 name="max">
+        <label for="average">Average sales per hour</label>
+        <input type="number" step="0.01" min="0.01" name="average">
+        <button type="submit">Create Store</button>
+      </fieldset>
     </form>
     <table id="sales-table">
       <thead id="sales-table-header"></thead>
